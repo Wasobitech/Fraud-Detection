@@ -3,34 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fraud Detection System - Live Simulation</title>
-    <!-- Tailwind CSS untuk Layouting -->
-    <script src="https://tailwindcss.com"></script>
+    <title>Fraud Detection System - Premium Live Simulation</title>
+    <!-- Perbaikan CDN Tailwind CSS Resmi -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Perbaikan tautan Google Fonts untuk gaya tulisan modern */
         @import url('https://googleapis.com');
+        
         body {
             font-family: 'Space Grotesk', sans-serif;
-            background-color: #121620;
+            background-color: #0b0f19;
         }
-        /* Custom scrollbar untuk log agar minimalis */
+        
         .custom-scrollbar::-webkit-scrollbar {
             width: 4px;
         }
         .custom-scrollbar::-webkit-scrollbar-track {
-            background: #1a202c;
+            background: #0e121a;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #4a5568;
+            background: #1e293b;
             border-radius: 2px;
         }
     </style>
 </head>
-<body class="text-gray-300 p-6 flex justify-center items-center min-h-screen">
+<body class="text-gray-300 p-4 md:p-6 flex justify-center items-center min-h-screen">
 
-    <div class="w-full max-w-2xl bg-[#171c28] rounded-2xl p-6 border border-gray-800 shadow-2xl space-y-6">
+    <div class="w-full max-w-2xl bg-[#111827] rounded-2xl p-6 border border-gray-800 shadow-2xl space-y-6">
         
         <!-- Legend Indicator Top -->
-        <div class="flex items-center space-x-6 text-xs font-medium border-b border-gray-800 pb-3">
+        <div class="flex items-center space-x-6 text-[11px] font-medium border-b border-gray-800 pb-3">
             <div class="flex items-center space-x-2">
                 <span class="w-2.5 h-2.5 rounded-full bg-[#10b981] inline-block shadow-[0_0_8px_#10b981]"></span>
                 <span class="text-gray-400">Aliran Normal</span>
@@ -40,14 +42,13 @@
                 <span class="text-gray-400">Aliran Mencurigakan (Skor Tinggi)</span>
             </div>
             <div class="flex items-center space-x-2">
-                <span class="w-6 border-t-2 border-dashed border-red-500 inline-block"></span>
+                <span class="w-5 border-t-2 border-dashed border-red-500 inline-block"></span>
                 <span class="text-gray-400">Batas Sensitivitas</span>
             </div>
         </div>
 
         <!-- Canvas Network Area -->
-        <div class="relative w-full h-72 bg-[#0e121a] rounded-xl border border-gray-800/80 overflow-hidden">
-            <!-- Canvas Utama -->
+        <div class="relative w-full h-80 bg-[#0b0f19] rounded-xl border border-gray-800 overflow-hidden">
             <canvas id="networkCanvas" class="absolute inset-0 w-full h-full"></canvas>
             
             <!-- Tombol Kontrol Pause / Play Bulat -->
@@ -55,28 +56,27 @@
                 <span id="pause-icon" class="text-gray-400 text-xs">⏸</span>
             </button>
 
-            <!-- Teks Mini Grafik -->
-            <span class="absolute bottom-12 left-4 text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Tren Skor Anomali Real-time</span>
+            <span class="absolute bottom-14 left-4 text-[9px] text-gray-500 uppercase tracking-wider font-semibold">Tren Skor Anomali Real-time</span>
         </div>
 
         <!-- Counter Metrik -->
-        <div class="grid grid-cols-3 gap-2 text-center bg-[#11151f] py-4 rounded-xl border border-gray-800/50">
+        <div class="grid grid-cols-3 gap-2 text-center bg-[#0b0f19] py-4 rounded-xl border border-gray-800/60">
             <div>
-                <p class="text-[11px] text-gray-400 uppercase tracking-wider">Total Dipantau</p>
+                <p class="text-[10px] text-gray-400 uppercase tracking-wider">Total Dipantau</p>
                 <p class="text-xl font-bold text-gray-100 mt-1" id="val-total">1062</p>
             </div>
             <div>
-                <p class="text-[11px] text-gray-400 uppercase tracking-wider">Terindikasi Culas</p>
+                <p class="text-[10px] text-gray-400 uppercase tracking-wider">Terindikasi Culas</p>
                 <p class="text-xl font-bold text-red-500 mt-1 drop-shadow-[0_0_10px_rgba(239,68,68,0.2)]" id="val-culas">451</p>
             </div>
             <div>
-                <p class="text-[11px] text-gray-400 uppercase tracking-wider">Rerata Anomali</p>
+                <p class="text-[10px] text-gray-400 uppercase tracking-wider">Rerata Anomali</p>
                 <p class="text-xl font-bold text-gray-100 mt-1" id="val-anomali">77.6%</p>
             </div>
         </div>
 
         <!-- Interactive Sliders -->
-        <div class="grid grid-cols-2 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="space-y-2">
                 <div class="flex justify-between items-center text-xs">
                     <span class="text-gray-400 font-medium">Ambang Batas Sensitivitas Fraud</span>
@@ -109,8 +109,8 @@
         <!-- Log Peringatan Sistem Otomatis Terbaru -->
         <div class="space-y-2 pt-2">
             <p class="text-xs text-gray-400 font-medium">Log Peringatan Sistem Deteksi Otomatis Terbaru:</p>
-            <div id="log-container" class="custom-scrollbar h-36 bg-[#0e121a] border border-gray-800/80 rounded-xl p-3 overflow-y-auto space-y-2.5 font-mono text-[11px]">
-                <!-- Log diinjeksi via JavaScript secara dinamis -->
+            <div id="log-container" class="custom-scrollbar h-40 bg-[#0b0f19] border border-gray-800 rounded-xl p-3 overflow-y-auto space-y-2 font-mono text-[11px]">
+                <!-- Log masuk otomatis via JS -->
             </div>
         </div>
 
@@ -120,30 +120,28 @@
         const canvas = document.getElementById('networkCanvas');
         const ctx = canvas.getContext('2d');
 
-        // Set resolusi internal canvas agar tajam
         function resizeCanvas() {
             canvas.width = canvas.parentElement.clientWidth;
             canvas.height = canvas.parentElement.clientHeight;
         }
         resizeCanvas();
 
-        // State Aplikasi
         let isPlaying = true;
-        let activeScenario = 'high'; // 'mix' atau 'high'
+        let activeScenario = 'high';
         let sensitivityValue = 75;
         let speedMultiplier = 1;
 
-        // Definisi Node Rekening Koordinat (Relatif terhadap ukuran canvas)
+        // Titik Koordinat Posisi Node Akun
         const nodes = {
-            kasUtama: { label: 'Kas Utama Perusahaan', x: 0.18, y: 0.42 },
-            akunPayroll: { label: 'Akun Penggajian (Payroll)', x: 0.50, y: 0.22 },
-            vendorLuar: { label: 'Vendor Luar Negeri (Offshore)', x: 0.50, y: 0.48 },
-            kasKecil: { label: 'Kas Kecil & Operasional', x: 0.50, y: 0.78 },
-            kliringResmi: { label: 'Rekening Kliring Resmi', x: 0.82, y: 0.32 },
-            pihakKetiga: { label: 'Rekening Pihak Ketiga Tidak Dikenal', x: 0.82, y: 0.62 }
+            kasUtama: { label: 'Kas Utama Perusahaan', x: 0.18, y: 0.40 },
+            akunPayroll: { label: 'Akun Penggajian (Payroll)', x: 0.50, y: 0.18 },
+            vendorLuar: { label: 'Vendor Luar Negeri (Offshore)', x: 0.50, y: 0.45 },
+            kasKecil: { label: 'Kas Kecil & Operasional', x: 0.50, y: 0.75 },
+            kliringResmi: { label: 'Rekening Kliring Resmi', x: 0.82, y: 0.28 },
+            pihakKetiga: { label: 'Rekening Pihak Ketiga Tidak Dikenal', x: 0.82, y: 0.60 }
         };
 
-        // Definisi Jalur Aliran Pipa Dana (Koneksi antar Node)
+        // Hubungan Koneksi antar Jalur Pipa
         const pathways = [
             { from: 'kasUtama', to: 'akunPayroll', isFraud: false },
             { from: 'kasUtama', to: 'vendorLuar', isFraud: true },
@@ -154,40 +152,34 @@
             { from: 'vendorLuar', to: 'kliringResmi', isFraud: false }
         ];
 
-        // Array Penampung Agen Partikel Aliran
         let particles = [];
 
         function createParticle(pathway) {
             return {
                 fromNode: nodes[pathway.from],
                 toNode: nodes[pathway.to],
-                progress: 0,
-                speed: (0.004 + Math.random() * 0.006) * speedMultiplier,
+                progress: Math.random(),
+                speed: (0.003 + Math.random() * 0.004) * speedMultiplier,
                 isFraud: pathway.isFraud
             };
         }
 
-        // Inisialisasi partikel awal
+        // Generate partikel aliran awal
         pathways.forEach(p => {
-            for(let i=0; i<3; i++) {
-                let part = createParticle(p);
-                part.progress = Math.random();
-                particles.push(part);
+            for(let i = 0; i < 3; i++) {
+                particles.push(createParticle(p));
             }
         });
 
-        // Loop Generator Data Grafik Garis Gelombang di Bagian Bawah Canvas
         let waveOffset = 0;
 
-        // Fungsi Render Animasi Utama
         function draw() {
             if (!canvas.width || !canvas.height) return;
             
-            // Clear Frame dengan background gelap semu transparan untuk efek Motion Blur
-            ctx.fillStyle = '#0e121a';
+            ctx.fillStyle = '#0b0f19';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Gambar Garis Hubungan Struktur (Wireframe)
+            // 1. Gambar Tali Wireframe Jalur Transaksi
             ctx.lineWidth = 1;
             pathways.forEach(path => {
                 const start = nodes[path.from];
@@ -199,11 +191,24 @@
                 ctx.stroke();
             });
 
-            // 2. Update & Gambar Partikel Aliran Cair Bergerak (Merah / Hijau)
-            if (isPlaying) {
-                particles.forEach((p, index) => {
+            // 2. Pembaruan Logika Posisi Animasi Partikel Aliran
+            particles.forEach(p => {
+                if (isPlaying) {
                     p.progress += p.speed;
                     if (p.progress >= 1) {
                         p.progress = 0;
-                        // Trigger injeksi data log baru saat partikel fraud sampai ke tujuan
                         if(p.isFraud && Math.random() > 0.4) {
+                            addLogEntry();
+                            triggerMetricBump();
+                        }
+                    }
+                }
+
+                const x = (p.fromNode.x + (p.toNode.x - p.fromNode.x) * p.progress) * canvas.width;
+                const y = (p.fromNode.y + (p.toNode.y - p.fromNode.y) * p.progress) * canvas.height;
+                
+                ctx.beginPath();
+                ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+                ctx.fillStyle = p.isFraud ? '#ef4444' : '#10b981';
+                ctx.shadowColor = p.isFraud ? '#ef4444' : '#10b981';
+                ctx.shadowBlur = 6;
